@@ -1,0 +1,37 @@
+<ActionBar title="Dish Details" class="action-bar">
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="goBack()"></NavigationButton>
+    <!-- For Android, we specify the exact icon to be used for the navigation button. For iOS, the default navigation button is already implemented by this -->
+</ActionBar>
+<ScrollView orientation="vertical">
+    <GridLayout class="m-5" rows="auto auto auto" *ngIf="dish">
+            <!-- m stands for margin and 5 means five units of margin all around this GridLayout.  -->
+            <!-- In this case, the GridLayout has three rows. So I will specify the heights as auto, meaning that it'll automatically resize to the content that is in that particular row, -->
+        <StackLayout row="0" class="p-10 border">
+            <Image [src]="BaseURL + dish.image"></Image>
+            <StackLayout>
+                <Label class="h2" [text]="dish.name"></Label>
+                <Label class="body" [text]="dish.description" textWrap="true"></Label>
+            </StackLayout>
+        </StackLayout>
+        <Label row="1" height="40" class="p-10 m-t-10 h3" text="Comments"></Label>
+        <!-- this will add a margin to the top of this label of 10 units to the top of this layout. If I say m-b-10, it will add to the bottom, L and R for left and right.  -->
+        <ListView row="2" height="500" [items]="dish.comments" class="list-group p-10">
+            <ng-template let-comment="item">
+                <StackLayout class="list-group-item">
+                    <Label class="list-group-item-heading" [text]="comment.comment" textWrap="true"></Label>
+                    <StackLayout orientation="horizontal">
+                        <Label class="list-group-item-text" [text]="comment.rating"></Label>
+                        <Label class="list-group-item-text" text=" Stars"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal">
+                        <Label class="list-group-item-text" [text]="'-- ' + comment.author + ', '"></Label>
+                        <Label class="list-group-item-text" [text]="comment.date | date"></Label>
+                        <!-- the date will be contained as ISO formatted string. Now I want to convert that into a date that I can display, so I'm going to use a built in pipe from angular called the date pipe, which will convert the ISO string into a standard date that can be displayed there. -->
+                    </StackLayout>
+                </StackLayout>
+            </ng-template>
+        </ListView>
+    </GridLayout>
+    <ActivityIndicator busy="true" *ngIf="!(dish || errMess)" width="50" height="50" class="activity-indicator"></ActivityIndicator>
+    <Label *ngIf="errMess" [text]="'Error: ' + errMess"></Label>
+</ScrollView>

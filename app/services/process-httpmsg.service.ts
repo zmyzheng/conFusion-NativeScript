@@ -25,9 +25,7 @@ export class ProcessHTTPMsgService {
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-    // return Observable.throw(errMsg);
-    return errMsg;
-   
-
+    return Observable.throw(errMsg);
+  
   }
 }

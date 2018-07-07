@@ -53,3 +53,12 @@ refer to http://docs.nativescript.org/ui/theme.
 
 /* ------------------- */
 
+
+.fa {
+    font-family: FontAwesome, fontawesome-webfont;
+}
+/* FontAwesome是for IOS, fontawesome-webfont 是for Android*/
+
+
+/* -------------------------- */
+

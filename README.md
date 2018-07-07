@@ -16,7 +16,16 @@ git commit -m "Initial Setup"
 git push -u origin master
 
 -----------------------------
+npm install font-awesome --save
 
+npm install --save nativescript-ngx-fonticon
+
+
+
+NativeScript explicitly expects that if you are using any icon fonts, the corresponding icon font files will be stored in this folder named fonts, in your app folder.
+
+
+----------------------------
 
 注意process-httpmsg.service.ts的用法是值得借鉴的
 

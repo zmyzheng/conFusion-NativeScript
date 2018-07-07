@@ -5,16 +5,22 @@
 </GridLayout>
 <StackLayout class="sidedrawer-content" orientation="vertical">
     <!-- the space occupied by the rows and columns is dependent on the content that and the orientation for this -->
-    <GridLayout class="sidedrawer-list-item" rows="*" columns="*" orientation="horizontal" [nsRouterLink]="['/home']" clearHistory="true">
-        <Label row="0" col="0" class="sidedrawer-list-item-text" text="Home"></Label>
+    <GridLayout class="sidedrawer-list-item" rows="*" columns="50, *" orientation="horizontal" [nsRouterLink]="['/home']" clearHistory="true">
+        <Label row="0" col="0" class="sidedrawer-list-item-text fa" [text]="'fa-home' | fonticon"></Label>
+        <!-- fonticon是injected的service -->
+        <Label row="0" col="1" class="sidedrawer-list-item-text" text="Home"></Label>
     </GridLayout>
-    <GridLayout class="sidedrawer-list-item" rows="*" columns="*" orientation="horizontal" [nsRouterLink]="['/menu']" clearHistory="true">
-        <Label row="0" col="0" class="sidedrawer-list-item-text" text="Menu"></Label>
+    <GridLayout class="sidedrawer-list-item" rows="*" columns="50, *" orientation="horizontal" [nsRouterLink]="['/about']" clearHistory="true">
+        <Label row="0" col="0" class="sidedrawer-list-item-text fa" [text]="'fa-info-circle' | fonticon"></Label>
+        <Label row="0" col="1" class="sidedrawer-list-item-text" text="About Us"></Label>
     </GridLayout>
-    <GridLayout class="sidedrawer-list-item" rows="*" columns="*" orientation="horizontal"[nsRouterLink]="['/contactus']" clearHistory="true">
-        <Label row="0" col="0" class="sidedrawer-list-item-text" text="Contact Us"></Label>
+    <GridLayout class="sidedrawer-list-item" rows="*" columns="50, *" orientation="horizontal" [nsRouterLink]="['/menu']" clearHistory="true">
+        <Label row="0" col="0" class="sidedrawer-list-item-text fa" [text]="'fa-list' | fonticon"></Label>
+        <Label row="0" col="1" class="sidedrawer-list-item-text" text="Menu"></Label>
     </GridLayout>
-    <GridLayout class="sidedrawer-list-item" rows="*" columns="*" orientation="horizontal"[nsRouterLink]="['/about']" clearHistory="true">
-        <Label row="0" col="0" class="sidedrawer-list-item-text" text="About Us"></Label>
+    <GridLayout class="sidedrawer-list-item" rows="*" columns="50, *" orientation="horizontal" [nsRouterLink]="['/contactus']"
+        clearHistory="true">
+        <Label row="0" col="0" class="sidedrawer-list-item-text fa" [text]="'fa-address-card' | fonticon"></Label>
+        <Label row="0" col="1" class="sidedrawer-list-item-text" text="Contact Us"></Label>
     </GridLayout>
 </StackLayout>

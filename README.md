@@ -16,6 +16,8 @@ git commit -m "Initial Setup"
 git push -u origin master
 
 -----------------------------
+ tns plugin add nativescript-telerik-ui
+ 
 npm install font-awesome --save
 
 npm install --save nativescript-ngx-fonticon

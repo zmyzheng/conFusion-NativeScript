@@ -1,23 +1,30 @@
 <ActionBar title="Menu" class="action-bar">
 </ActionBar>
-<StackLayout class="page">
-    <ListView [items]="dishes" class="list-group" *ngIf="dishes">
-        <!-- 必须用items，是nativescript预先定义的 -->
-        <ng-template let-dish="item">
-            <!-- item是预先定义的，let-dish把item的值传给dish变量 -->
-            <StackLayout orientation="horizontal" class="list-group-item" [nsRouterLink]="['/dishdetail', dish.id]">
-                <Image row="0" col="0" rowSpan="2" height="108" width="108" [src]="BaseURL + dish.image" class="thumb p-16"></Image>
-                <!-- p-16：16 units padding -->
-                <GridLayout class="list-group-item" rows="auto *" columns="*">
-                    <!-- GridLayout可以定义行列 -->
-                    <Label row="0" col="0" [text]="dish.name" class="list-group-item-heading"></Label>
-                    <Label row="1" col="0" class="list-group-item-text" [text]="dish.description"></Label>
-                    <!-- 注意dish.description并不是放在tag之间，而是当成一个属性  -->
-                </GridLayout>
-            </StackLayout>
-        </ng-template>
-    </ListView>
-    <ActivityIndicator busy="true" *ngIf="!(dishes || errMess)" width="50" height="50" class="activity-indicator"></ActivityIndicator>
-    <!-- ActivityIndicator设置等待循环的标志 -->
-    <Label *ngIf="errMess" [text]="'Error: ' + errMess"></Label>
-</StackLayout>
+<RadSideDrawer #drawerComponent tkToggleNavButton showOverNavigation="true">
+    <ScrollView tkDrawerContent class="sidedrawer-left">
+        <StackLayout horizontalAlign="left">
+            <drawer-content></drawer-content>
+        </StackLayout>
+    </ScrollView>
+    <StackLayout tkMainContent class="page">
+        <ListView [items]="dishes" class="list-group" *ngIf="dishes">
+            <!-- 必须用items，是nativescript预先定义的 -->
+            <ng-template let-dish="item">
+                <!-- item是预先定义的，let-dish把item的值传给dish变量 -->
+                <StackLayout orientation="horizontal" class="list-group-item" [nsRouterLink]="['/dishdetail', dish.id]">
+                    <Image row="0" col="0" rowSpan="2" height="108" width="108" [src]="BaseURL + dish.image" class="thumb p-16"></Image>
+                    <!-- p-16：16 units padding -->
+                    <GridLayout class="list-group-item" rows="auto *" columns="*">
+                        <!-- GridLayout可以定义行列 -->
+                        <Label row="0" col="0" [text]="dish.name" class="list-group-item-heading"></Label>
+                        <Label row="1" col="0" class="list-group-item-text" [text]="dish.description"></Label>
+                        <!-- 注意dish.description并不是放在tag之间，而是当成一个属性  -->
+                    </GridLayout>
+                </StackLayout>
+            </ng-template>
+        </ListView>
+        <ActivityIndicator busy="true" *ngIf="!(dishes || errMess)" width="50" height="50" class="activity-indicator"></ActivityIndicator>
+        <!-- ActivityIndicator设置等待循环的标志 -->
+        <Label *ngIf="errMess" [text]="'Error: ' + errMess"></Label>
+    </StackLayout>
+</RadSideDrawer>

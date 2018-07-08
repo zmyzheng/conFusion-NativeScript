@@ -33,6 +33,8 @@ NativeScript explicitly expects that if you are using any icon fonts, the corres
 
 <Image [src]="BaseURL + dish.image"></Image> 的用法值得借鉴
 
+favorites.component.ts 中deleteFavorite的逻辑值得学习
+
 这个例子中subscribe都放在service外了，一般应该放在service内
 
 

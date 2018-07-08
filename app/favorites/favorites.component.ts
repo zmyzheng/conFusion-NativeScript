@@ -6,6 +6,9 @@ import { RadListViewComponent } from 'nativescript-telerik-ui/listview/angular';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
 import { DrawerPage } from '../shared/drawer/drawer.page';
 import { View } from 'ui/core/view';
+import { confirm } from "ui/dialogs";
+import { Toasty } from 'nativescript-toasty';
+
 @Component({
     selector: 'app-favorites',
     moduleId: module.id,
@@ -24,7 +27,7 @@ export class FavoritesComponent extends DrawerPage implements OnInit {
     constructor(private favoriteservice: FavoriteService,
         private changeDetectorRef: ChangeDetectorRef,
         @Inject('BaseURL') private BaseURL) {
-            super(changeDetectorRef);
+        super(changeDetectorRef);
     }
 
     ngOnInit() {
@@ -34,9 +37,34 @@ export class FavoritesComponent extends DrawerPage implements OnInit {
     }
 
     deleteFavorite(id: number) {
-        this.favoriteservice.deleteFavorite(id)
-            .subscribe(favorites => this.favorites = new ObservableArray(favorites),
-                errmess => this.errMess = errmess);
+        console.log('delete', id);
+
+        let options = {
+            title: "Confirm Delete",
+            message: 'Do you want to delete Dish ' + id,
+            okButtonText: "Yes",
+            cancelButtonText: "No",
+            neutralButtonText: "Cancel"
+        };
+
+        confirm(options).then((result: boolean) => {
+            if (result) {
+
+                this.favorites = null;
+
+                this.favoriteservice.deleteFavorite(id)
+                    .subscribe(favorites => {
+                        const toast = new Toasty("Deleted Dish " + id, "short", "bottom");
+                        toast.show();
+                        this.favorites = new ObservableArray(favorites);
+                    },
+                        errmess => this.errMess = errmess);
+            }
+            else {
+                console.log('Delete cancelled');
+            }
+        });
+
     }
 
     public onCellSwiping(args: ListViewEventData) {
@@ -44,7 +72,7 @@ export class FavoritesComponent extends DrawerPage implements OnInit {
         var currentItemView = args.object;
         var currentView;
 
-        if(args.data.x > 200) {
+        if (args.data.x > 200) {
 
         }
         else if (args.data.x < -200) {
@@ -61,7 +89,7 @@ export class FavoritesComponent extends DrawerPage implements OnInit {
         var rightItem = swipeView.getViewById<View>('delete-view');
         swipeLimits.left = leftItem.getMeasuredWidth();
         swipeLimits.right = rightItem.getMeasuredWidth();
-        swipeLimits.threshold = leftItem.getMeasuredWidth()/2;
+        swipeLimits.threshold = leftItem.getMeasuredWidth() / 2;
     }
 
 

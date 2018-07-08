@@ -32,6 +32,7 @@ export class DishdetailComponent implements OnInit {
         @Inject('BaseURL') private BaseURL,
         private favoriteservice: FavoriteService,
         private fonticon: TNSFontIconService) { }
+        // fonticon在HTML里用到了
 
         ngOnInit() {
             this.route.params

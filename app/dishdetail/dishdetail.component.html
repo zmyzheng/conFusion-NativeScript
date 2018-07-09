@@ -22,7 +22,7 @@
         </StackLayout>
         <Label row="1" height="40" class="p-10 m-t-10 h3" text="Comments"></Label>
         <!-- this will add a margin to the top of this label of 10 units to the top of this layout. If I say m-b-10, it will add to the bottom, L and R for left and right.  -->
-        <ListView row="2" height="500" [items]="dish.comments" class="list-group p-10">
+        <ListView row="2" height="1000" [items]="dish.comments" class="list-group p-10">
             <ng-template let-comment="item">
                 <StackLayout class="list-group-item">
                     <Label class="list-group-item-heading" [text]="comment.comment" textWrap="true"></Label>

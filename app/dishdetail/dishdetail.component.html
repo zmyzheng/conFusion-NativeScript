@@ -1,6 +1,7 @@
 <ActionBar title="Dish Details" class="action-bar">
     <NavigationButton android.systemIcon="ic_menu_back" (tap)="goBack()"></NavigationButton>
     <!-- For Android, we specify the exact icon to be used for the navigation button. For iOS, the default navigation button is already implemented by this -->
+    <ActionItem ios.systemIcon="9" android.systemIcon="ic_menu_more" (tap)="openDialog()"></ActionItem>
 </ActionBar>
 <ScrollView orientation="vertical">
     <GridLayout class="m-5" rows="auto auto auto" *ngIf="dish">

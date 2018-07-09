@@ -9,6 +9,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 // import 'rxjs/add/operator/switchMap';
 import { switchMap } from 'rxjs/operators';
 import { Toasty } from 'nativescript-toasty'
+import { action } from 'tns-core-modules/ui/dialogs/dialogs';
 
 @Component({
     selector: 'app-dishdetail',
@@ -62,4 +63,18 @@ export class DishdetailComponent implements OnInit {
     goBack(): void {
         this.routerExtensions.back();
     }
+
+    openDialog() {
+        let options = {
+            title: "Actions available",
+            message: "Select an option",
+            cancelButtonText: "Cancel",
+            actions: ["Add to favorites", "Add comment"]
+        };
+        action(options).then((result) => {
+          if (result == 'Add to favorites') {
+            this.addToFavorites();
+          }
+        });
+      }
 }

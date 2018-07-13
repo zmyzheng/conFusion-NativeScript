@@ -8,7 +8,7 @@
 android {  
   defaultConfig {  
     generatedDensities = []
-    applicationId = "org.nativescript.conFusion"  
+    applicationId = "org.nativescript.conFusionNativeScript"  
   }  
   aaptOptions {  
     additionalParameters "--no-version-vectors"  

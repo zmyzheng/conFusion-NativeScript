@@ -1,4 +1,5 @@
 <ActionBar title="My Favorites" class="action-bar">
+    <NavigationButton text="Menu" icon="res://ic_drawer" (tap)="openDrawer()"></NavigationButton>
 </ActionBar>
 <RadSideDrawer #drawerComponent tkToggleNavButton showOverNavigation="true">
     <ScrollView tkDrawerContent class="sidedrawer-left">
@@ -33,6 +34,5 @@
         </RadListView>
         <ActivityIndicator busy="true" *ngIf="!(favorites || errMess)" width="50" height="50" class="activity-indicator"></ActivityIndicator>
         <Label *ngIf="errMess" [text]="'Error: ' + errMess"></Label>
-
     </StackLayout>
 </RadSideDrawer>

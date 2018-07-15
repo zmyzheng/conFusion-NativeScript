@@ -24,7 +24,7 @@
                 <Image id="myPicture" row="1" col="0" src="res://rcflogo" height="100" width="100"></Image>
                 <GridLayout row="2" col="0" orientation="horizontal" rows="*" columns="*, *" class="m-t-10">
                     <Button row="0" col="0" text="Take Picture" class="btn btn-rounded-sm btn-outline" (tap)="takePicture()"></Button>
-                    <Button row="0" col="1" text="Select Image" class="btn btn-rounded-sm btn-outline"></Button>
+                    <Button row="0" col="1" text="Select Image" class="btn btn-rounded-sm btn-outline" (tap)="getFromLibrary()"></Button>
                 </GridLayout>
             </GridLayout>
             <GridLayout class="input-field input-sides" rows="auto, auto, auto, auto, auto, auto, auto" columns="*, *" [formGroup]="registerForm">

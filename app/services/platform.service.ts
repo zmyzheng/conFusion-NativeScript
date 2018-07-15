@@ -89,7 +89,7 @@ export class PlatformService {
 
     public startMonitoringNetwork(): Observable<string> {
         return Observable.create((observer) => {
-
+            // pass on this information to any other place where we will subscribe to this observer. So notice that I am returning an observable here. And so whenever I call this function, I'll get the observable, and I can subscribe there. So in here, doing observer.next I'll be able to pass information, In the form of a string. 
             connectivity.startMonitoring((newConnectionType: number) => {
                 switch (newConnectionType) {
                     case connectivity.connectionType.none:

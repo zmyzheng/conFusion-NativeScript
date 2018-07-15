@@ -7,6 +7,13 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { ReservationModalComponent } from "../reservationmodal/reservationmodal.component";
 
+import { Page } from "ui/page";
+import { View } from "ui/core/view";
+import * as enums from "ui/enums";
+
+import { CouchbaseService } from '../services/couchbase.service';
+
+
 @Component({
     selector: 'app-reservation',
     moduleId: module.id,
@@ -16,10 +23,20 @@ export class ReservationComponent extends DrawerPage implements OnInit {
 
     reservation: FormGroup;
 
+    showForm: boolean = true;
+    showResults: boolean = false;
+    reservationValue: null;
+    formView: View;
+    dataView: View;
+
+    reservations: any[];
+
     constructor(private changeDetectorRef: ChangeDetectorRef,
         private formBuilder: FormBuilder,
         private _modalService: ModalDialogService,
-        private vcRef: ViewContainerRef) {
+        private vcRef: ViewContainerRef,
+        private page: Page,
+        private couchbaseService: CouchbaseService) {
         super(changeDetectorRef);
 
         this.reservation = this.formBuilder.group({
@@ -77,5 +94,44 @@ export class ReservationComponent extends DrawerPage implements OnInit {
 
     onSubmit() {
         console.log(JSON.stringify(this.reservation.value));
+        this.reservationValue = this.reservation.value;
+        this.storeToDatabase();
+        this.animationAfterStore();
+    }
+
+    animationAfterStore() {
+        this.formView = this.page.getViewById<View>("formView");
+        this.dataView = this.page.getViewById<View>("dataView");
+        this.formView.animate({
+            opacity: 0,
+            scale: { x: 0, y: 0 },
+            duration: 500,
+            curve: enums.AnimationCurve.easeInOut
+        })
+            .then(() => {
+                this.showForm = false;
+                this.dataView.animate({
+                    opacity: 1,
+                    scale: { x: 1, y: 1 },
+                    duration: 500,
+                    curve: enums.AnimationCurve.easeInOut
+                });
+            });
+    }
+
+    storeToDatabase() {
+        let doc = this.couchbaseService.getDocument('reservations');
+        if (doc === null) {
+            this.couchbaseService.createDocument({ "reservations": [] }, 'reservations');
+            console.log('first reservation');
+            doc = this.couchbaseService.getDocument('reservations');
+        }
+
+        console.log(JSON.stringify(doc))
+        this.reservations = doc.reservations;
+        this.reservations.push(this.reservationValue);
+        this.couchbaseService.updateDocument('reservations', { 'reservations': this.reservations });
+        console.log(JSON.stringify(this.couchbaseService.getDocument('reservations')))
+
     }
 }

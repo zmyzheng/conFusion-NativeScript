@@ -38,5 +38,7 @@ favorites.component.ts 中deleteFavorite的逻辑值得学习
 
 这个例子中subscribe都放在service外了，一般应该放在service内
 
+reservation 和 dishditail 的animation是不同的，dishdetail是两个view一起运行，reservation是一个结束接另一个
+
 
 

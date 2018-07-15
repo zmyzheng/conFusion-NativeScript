@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { TNSFontIconService } from 'nativescript-ngx-fonticon';
-import { login, LoginResult } from "ui/dialogs";
-import { getString, setString } from "application-settings";
+// import { login, LoginResult } from "ui/dialogs";
+// import { getString, setString } from "application-settings";
 
 @Component({
     selector: 'drawer-content',
@@ -10,7 +10,7 @@ import { getString, setString } from "application-settings";
 export class DrawerComponent {
 
     constructor(private fonticon: TNSFontIconService) { }
-
+/*
     displayLoginDialog() {
         let options = {
             title: "Login",
@@ -30,4 +30,5 @@ export class DrawerComponent {
                     console.log('Login cancelled');
                 });
     }
+    */
 }

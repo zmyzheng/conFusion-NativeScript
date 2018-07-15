@@ -1,5 +1,8 @@
 # conFusion-NativeScript
 
+![image](demo.gif)
+
+
 
 git init
 

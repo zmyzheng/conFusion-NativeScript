@@ -209,5 +209,4 @@ export class DishdetailComponent implements OnInit {
             console.log(e.message);
         });
       } 
-    
 }

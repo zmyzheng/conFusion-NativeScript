@@ -24,6 +24,8 @@ npm install --save nativescript-ngx-fonticon
 
 tns plugin add nativescript-couchbase
 
+tns plugin add nativescript-local-notifications
+
 
 NativeScript explicitly expects that if you are using any icon fonts, the corresponding icon font files will be stored in this folder named fonts, in your app folder.
 

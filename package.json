@@ -28,6 +28,7 @@
 		"nativescript-email": "^1.5.3",
 		"nativescript-local-notifications": "^2.0.5",
 		"nativescript-ngx-fonticon": "^4.2.0",
+		"nativescript-social-share": "^1.5.0",
 		"nativescript-telerik-ui": "^3.1.4",
 		"nativescript-theme-core": "~1.0.4",
 		"nativescript-toasty": "^1.1.5",

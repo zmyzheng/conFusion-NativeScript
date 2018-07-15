@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Http, Response } from '@angular/http';
 // import 'rxjs/add/observable/throw';
-// import { throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class ProcessHTTPMsgService {
@@ -25,7 +25,9 @@ export class ProcessHTTPMsgService {
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-    return Observable.throw(errMsg);
+    return throwError(errMsg);
+    // return Observable.throw(errMsg);
+    
   
   }
 }
